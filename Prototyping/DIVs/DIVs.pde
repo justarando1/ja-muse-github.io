@@ -9,8 +9,8 @@
  int appWidth = displayWidth;
  int appHeight = displayHeight;
 //
-float paperWidth = 215.9;
-float paperHeight = 279.4;
+float paperWidth = 279.4;
+float paperHeight = 215.9;
 //this equation will translate milimeters to pixels for the computer to calculate the locations and sizes of the GUI
 //
 float aCoverX = 7;

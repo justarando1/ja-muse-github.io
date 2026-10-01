@@ -163,18 +163,30 @@ float sFFX = 148;
 float sFFY = 188;
 float sFFW = 14;
 float sFFH = 14;
-float lLLIX = 154;
+float lLLIX = 164;
 float lLLIY = 188;
 float lLLIW = 14;
 float lLLIH = 14;
-float nextSongX = 170;
+float nextSongX = 180;
 float nextSongY = 188;
 float nextSongW = 14;
 float nextSongH = 14;
-float UpcomingX = 22.2;
+float UpcomingX = 231;
 float UpcomingY = 178;
 float UpcomingW = 28;
 float UpcomingH = 7;
+float songCoverUX = 245;
+float songCoverUY = 187;
+float songCoverUW = 17.5;
+float songCoverUH = 17.5;
+float songNameUX = 251;
+float songNameUY = 205.5;
+float songNameUW = 18.5;
+float songNameUH = 3.5;
+float songCreditsUX = 255;
+float songCreditsUY = 210.5;
+float songCreditsUW = 18.5;
+float songCreditsUH = 3.5;
 
 
 float[] gui = {aCoverX, aCoverY, aCoverW, aCoverH,aNameX,aNameY,aNameW,aNameH,aCreditsX,aCreditsY,aCreditsW,aCreditsH,profileX,profileY,profileW,profileH,addX,addY,addW,addH,followX,
@@ -184,7 +196,8 @@ followY,followW,followH,songsaX,songsaY,songsaW,songsaH,song1X,song1Y,song1W,son
 ,commentOTLX,commentOTLY,commentOTLW,commentOTLH,songCoverX,songCoverY,songCoverW,songCoverH,songTitleX,songTitleY,songTitleW,songTitleH,songCreditsCX,songCreditsCY,songCreditsCW,songCreditsCH
 ,progressX,progressY,progressW,progressH,muteVolumeX,muteVolumeY,muteVolumeW,muteVolumeH,volumeSliderX,volumeSliderY,volumeSliderW,volumeSliderH,timeLineX,timeLineY,timeLineW,timeLineH
 ,endX,endY,endW,endH,playbackSpeedX,playbackSpeedY,playbackSpeedW,playbackSpeedH,previousSongX,previousSongY,previousSongW,previousSongH,adjustTimeLineX,adjustTimeLineY,adjustTimeLineW,adjustTimeLineH,gBFRX,gBFRY,gBFRW,gBFRH
-,pPSX,pPSY,pPSW,pPSH,sFFX,sFFY,sFFW,sFFH,lLLIX,lLLIY,lLLIW,lLLIH,nextSongX,nextSongY,nextSongW,nextSongH,UpcomingX,UpcomingY,UpcomingW,UpcomingH};
+,pPSX,pPSY,pPSW,pPSH,sFFX,sFFY,sFFW,sFFH,lLLIX,lLLIY,lLLIW,lLLIH,nextSongX,nextSongY,nextSongW,nextSongH,UpcomingX,UpcomingY,UpcomingW,UpcomingH,songCoverUX,songCoverUY,songCoverUW,songCoverUH
+,songNameUX,songNameUY,songNameUW,songNameUH,songCreditsUX,songCreditsUY,songCreditsUW,songCreditsUH};
 
 for(int i = gui.length;i>0;) {
   if ((i-1)%2==0){
@@ -194,7 +207,7 @@ for(int i = gui.length;i>0;) {
     gui[i-=1] = heightSF * gui[i];
     }
   }
- for (int z = 0; z < 160; z += 4) {
+ for (int z = 0; z < 176; z += 4) {
   rect(gui[z],gui[z+1],gui[z+2],gui[z+3]);
   }
 

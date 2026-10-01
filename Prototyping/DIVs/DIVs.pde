@@ -6,7 +6,7 @@
 fullScreen();
 println(displayWidth, displayHeight);
 //double dubSideLength = Math.sqrt(displayWidth * displayHeight);
-float paperWidth = 279.4;
+float paperWidth = 276;
 float paperHeight = 215.9;
 float widthSF = displayWidth/paperWidth;
 float heightSF = displayHeight/paperHeight;

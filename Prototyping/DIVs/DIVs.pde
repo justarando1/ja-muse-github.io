@@ -3,6 +3,7 @@
  rect(nameX, nameY, nameWidth, nameHeight);
  Copy, Paste & Rename
 */
+
 fullScreen();
 println(displayWidth, displayHeight);
 //double dubSideLength = Math.sqrt(displayWidth * displayHeight);
@@ -209,29 +210,20 @@ for(int i = gui.length;i>0;) {
   }
  for (int z = 0; z < 176; z += 4) {
   rect(gui[z],gui[z+1],gui[z+2],gui[z+3]);
+ }
+float lLLIXX = lLLIX * widthSF;
+float lLLIYY = lLLIX * heightSF;
+float lLLIWW = lLLIW * widthSF;
+float lLLIHH = lLLIH * heightSF;
+if (mouseX > lLLIXX && mouseY < lLLIYY){
+  if (mouseX < lLLIXX + lLLIWW && mouseY > lLLIYY + lLLIHH){
+    if (mousePressed){
+      int m = 0;
+      m++;
+      for (int i = 0; i<m; i++){
+        fill(255,0,0);
+        arc(lLLIXX+lLLIWW/2,lLLIYY+lLLIHH/2,lLLIWW,lLLIHH,radians(90),radians(270),OPEN);         
+      }
+    }
   }
-
-//
-
-/*
-rect(imageX, imageY, imageWidth, imageHeight);
-/*
-rect(imageX, imageY, imageWidth, imageight);
-rect(songNameX, nameY, nameWidth, nameHeight);
-rect(artistX, nameY, nameWidth, nameHeight);
-rect(stopX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-rect(nameX, nameY, nameWidth, nameHeight);
-*/
+} 

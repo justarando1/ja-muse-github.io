@@ -1,6 +1,7 @@
 import java.awt.Dimension; //<>//
 import java.awt.Toolkit;
-PShape arc1l;
+PShape loop1;
+int phase = 1;
 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 void setup(){
   fullScreen();
@@ -20,12 +21,12 @@ void setup(){
   float aTY = lY+(lH/32)*14.5;
   float aTWH = (lH/32)*21;
   float aOWH = (lW/32)*23; 
-  int phase = 1;
   float positioning = phase*(lW/8);
-  PShape half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(90),radians(270),OPEN);
-  PShape half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(90),OPEN);
-  acr1.addChild(half1);
-  arc1.addChild(half2);
+  PShape half1 = createShape(ARC,aX,aOY,aOWH,aOWH,radians(90),radians(270),OPEN);
+  PShape half2 = createShape(ARC,aX,aTY,aTWH,aTWH,radians(-90),radians(90),OPEN);
+  loop1.addChild(half1);
+  loop1.addChild(half2);
+  
 }
 void draw(){
   noFill();
@@ -39,9 +40,12 @@ triangle((lLLIW/16)*7,(lLLIH/16)*3,(lLLIW/2),(lLLIH/32)*7,(lLLIW/2),(lLLIW/32)*5
   void mousePressed(){
     if (mouseX > lX && mouseY > lY){
       if (mouseX < lX + lW && mouseY < lY + lH){
-        Phase++;
-        if Phase = 1;
-        
+        phase++;
+        if (phase == 1){
+          loop1.removeChild(loop2); loop1.removeChild(loop3); loop1.removeChild(loop4); loop1.removeChild(loop5); loop1.removeChild(loop6);
+          }
+        if (phase >= 2){
+        }
       }
     } 
   }

@@ -1,9 +1,11 @@
 import java.awt.Dimension; //<>//
 import java.awt.Toolkit;
+PShape loop;
 PShape loop1;
 PShape loop2;
 PShape loop3;
 PShape loop6;
+int auto;
 int phase;
 float pW;
 float pH;
@@ -44,15 +46,23 @@ void setup(){
   aTY = lY+(lH/32)*14.5;
   aTWH = (lH/32)*21;
   aOWH = (lW/32)*23; 
-  half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
-  half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
+  half1 = createShape(ARC,aX,aOY,aOWH,aOWH,radians(88),radians(270),OPEN); 
+  half2 = createShape(ARC,aX,aTY,aTWH,aTWH,radians(-90),radians(92),OPEN);
   loop1 = createShape(GROUP);
   loop1.addChild(half1);
   loop1.addChild(half2);
+  loop = createShape(GROUP);
+  loop.addChild(loop1);
+  /*
+  loop6.setVisible(false);
+  loop2.setVisible(false);
+  loop3.setVisible(false);
+  */
+  
 }
 
 void draw(){
-  shape(loop1);
+  shape(loop);
 }
 /*
 fill(0);
@@ -65,27 +75,39 @@ void mousePressed(){
       positioning = phase*(lW/8);
       half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
       half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
-      if (phase == 2){
+      if (phase == 1){
+        if (auto != 1){
         loop2 = createShape(GROUP);
         loop2.addChild(half1);
         loop2.addChild(half2);
-        loop1.addChild(loop2);
+        loop.addChild(loop2);
+        }
+        loop.getChild(1).setVisible(true);
+      }
+      if (phase == 2){
+        if (auto != 1){
+          loop3 = createShape(GROUP);
+          loop3.addChild(half1);
+          loop3.addChild(half2);
+          loop.addChild(loop3);
+        }
+        loop.getChild(2).setVisible(true);
       }
       if (phase == 3){
-        loop3 = createShape(GROUP);
-        loop3.addChild(half1);
-        loop3.addChild(half2);
-        loop1.addChild(loop3);
+        if (auto != 1){
+          loop6 = createShape(GROUP);
+          loop6.addChild(loop1);
+          loop6.scale(0.5);
+          loop6.translate(lX+(lW/2),lY+(lH/2));
+          loop.addChild(loop6);
+        }
+        loop.getChild(3).setVisible(true);
       }
       if (phase == 4){
-        loop6 = createShape(GROUP);
-        loop6 = loop1;
-        scale(0.5);
-        translate(lX/2,lY/2);
-        loop1.addChild(loop6);
-      }
-      if (phase == 1){
-        loop1.removeChild(3); loop1.removeChild(4); loop1.removeChild(5);
+        loop.setVisible(false);
+        loop.getChild(0).setVisible(true);
+        phase = 0;
+        auto = 1;
       }
       redraw();
     }

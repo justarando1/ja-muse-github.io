@@ -30,7 +30,7 @@ void setup(){
   println(displayWidth,displayHeight); 
   noFill();
   strokeWeight(0.5);
-  phase = 1;
+  phase = 0;
   pW = 276;
   pH = 215.9;
   wSF = displayWidth/pW;
@@ -44,27 +44,11 @@ void setup(){
   aTY = lY+(lH/32)*14.5;
   aTWH = (lH/32)*21;
   aOWH = (lW/32)*23; 
-  positioning = phase*(lW/8);
-  half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(90),radians(270),OPEN); 
-  half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(90),OPEN);
-  if (phase == 1){
-    loop1 = createShape(GROUP);
-    loop1.addChild(half1);
-    loop1.addChild(half2);
-  }
-  if (phase == 2){
-    loop2 = createShape(GROUP);
-    loop2.addChild(half1);
-    loop2.addChild(half2);
-  }
-  if (phase == 3){
-    loop3 = createShape(GROUP);
-    loop3.addChild(half1);
-    loop3.addChild(half2);
-  }
-  if (phase == 4){
-    
-  }
+  half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
+  half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
+  loop1 = createShape(GROUP);
+  loop1.addChild(half1);
+  loop1.addChild(half2);
 }
 
 void draw(){
@@ -78,11 +62,32 @@ void mousePressed(){
   if (mouseX > lX && mouseY > lY){
     if (mouseX < lX + lW && mouseY < lY + lH){
       phase++;
+      positioning = phase*(lW/8);
+      half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
+      half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
+      if (phase == 2){
+        loop2 = createShape(GROUP);
+        loop2.addChild(half1);
+        loop2.addChild(half2);
+        loop1.addChild(loop2);
+      }
+      if (phase == 3){
+        loop3 = createShape(GROUP);
+        loop3.addChild(half1);
+        loop3.addChild(half2);
+        loop1.addChild(loop3);
+      }
+      if (phase == 4){
+        loop6 = createShape(GROUP);
+        loop6 = loop1;
+        scale(0.5);
+        translate(lX/2,lY/2);
+        loop1.addChild(loop6);
+      }
       if (phase == 1){
         loop1.removeChild(3); loop1.removeChild(4); loop1.removeChild(5);
-        }
-      if (phase >= 2){
       }
+      redraw();
     }
   } 
 }

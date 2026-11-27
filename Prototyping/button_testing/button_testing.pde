@@ -5,7 +5,6 @@ PShape loop1;
 PShape loop2;
 PShape loop3;
 PShape loop6;
-int auto;
 int phase;
 float pW;
 float pH;
@@ -53,16 +52,56 @@ void setup(){
   loop1.addChild(half2);
   loop = createShape(GROUP);
   loop.addChild(loop1);
-  /*
-  loop6.setVisible(false);
-  loop2.setVisible(false);
-  loop3.setVisible(false);
-  */
-  
+  while (phase < 4){
+    phase ++;
+    positioning = phase*(lW/8);
+    half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
+    half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
+    if (phase == 1){
+          loop2 = createShape(GROUP);
+          loop2.addChild(half1);
+          loop2.addChild(half2);
+          loop.addChild(loop2);
+        }
+        if (phase == 2){
+            loop3 = createShape(GROUP);
+            loop3.addChild(half1);
+            loop3.addChild(half2);
+            loop.addChild(loop3);
+        }
+        if (phase == 3){
+            loop6 = createShape(GROUP);
+            loop6.addChild(loop1);
+            loop6.addChild(loop2);
+            loop6.addChild(loop3);
+            loop6.scale(0.5);
+            loop6.translate(lX+(lW/2),lY+(lH/2));
+            loop.addChild(loop6);
+         }
+  }
 }
 
-void draw(){
-  shape(loop);
+void draw(){   
+  loop2.setVisible(false);
+  loop3.setVisible(false);
+  loop6.setVisible(false);
+  if (phase == 1){
+    loop.getChild(1).setVisible(true);
+  }
+  if (phase == 2){
+    loop.getChild(2).setVisible(true);
+  }
+  if (phase == 3){
+    loop.getChild(3).setVisible(true);
+   }
+   if (phase == 4){
+    loop2.setVisible(false);
+    loop3.setVisible(false);
+    loop6.setVisible(false);
+    phase = 0;
+   }
+   println(phase);
+   shape(loop);
 }
 /*
 fill(0);
@@ -72,43 +111,6 @@ void mousePressed(){
   if (mouseX > lX && mouseY > lY){
     if (mouseX < lX + lW && mouseY < lY + lH){
       phase++;
-      positioning = phase*(lW/8);
-      half1 = createShape(ARC,aX,aOY,aOWH-positioning,aOWH-positioning,radians(88),radians(270),OPEN); 
-      half2 = createShape(ARC,aX,aTY,aTWH-positioning,aTWH-positioning,radians(-90),radians(92),OPEN);
-      if (phase == 1){
-        if (auto != 1){
-        loop2 = createShape(GROUP);
-        loop2.addChild(half1);
-        loop2.addChild(half2);
-        loop.addChild(loop2);
-        }
-        loop.getChild(1).setVisible(true);
-      }
-      if (phase == 2){
-        if (auto != 1){
-          loop3 = createShape(GROUP);
-          loop3.addChild(half1);
-          loop3.addChild(half2);
-          loop.addChild(loop3);
-        }
-        loop.getChild(2).setVisible(true);
-      }
-      if (phase == 3){
-        if (auto != 1){
-          loop6 = createShape(GROUP);
-          loop6.addChild(loop1);
-          loop6.scale(0.5);
-          loop6.translate(lX+(lW/2),lY+(lH/2));
-          loop.addChild(loop6);
-        }
-        loop.getChild(3).setVisible(true);
-      }
-      if (phase == 4){
-        loop.setVisible(false);
-        loop.getChild(0).setVisible(true);
-        phase = 0;
-        auto = 1;
-      }
       redraw();
     }
   } 
